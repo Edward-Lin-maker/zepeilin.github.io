@@ -3,9 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Zepei Lin | Robotics & Mechanical Engineering</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <h1>我的个人网页正在施工中...</h1>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h2>Zepei Lin</h2>
+            <p>ZJU Mechanical Engineering</p>
+        </div>
+        <ul>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#activities">Activities</a></li>
+            <li><a href="#skills">Skills</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <span class="contact-label">Contact Info:</span>
+            <p>zepeilinzju@outlook.com</p>
+        </div>
+    </nav>
+
+    <main class="content">
+        <section id="education" class="card">
+            <div class="card-header edu-header">Education</div>
+            <div class="card-body">
+                <div class="item-header">
+                    <h3>Zhejiang University</h3>
+                    <span class="item-date">2022.09 - 2026.06</span>
+                </div>
+                <p class="item-sub">Undergraduate in Mechanical Engineering | Hangzhou, China</p>
+                <p>GPA: 4.01 / 4.3 (Rank: Top 20%)</p>
+                <p><strong>Key Courses:</strong> Mechanical Principles (5/5), Measurement Technology (5/5), Fundamentals of Control (4.2/5), Mobile Robots (4.5/5), Robotics (4.5/5)</p>
+                <p><strong>Honors:</strong> ZJU Third-Class Scholarship; Scholarship of Mechanical Engineering School; Second Prize, ZJU Robot Competition</p>
+            </div>
+        </section>
+
+        <section id="experience" class="card">
+            <div class="card-header exp-header">Research & Internship Experience</div>
+            <div class="card-body">
+                <div class="item">
+                    <div class="item-header">
+                        <h4><a href="server-robot.html" class="project-title-link">Server Handling Robot Full-System Design <i class="fas fa-arrow-up-right-from-square"></i></a></h4>
+                        <span class="item-date">2025.06 - Present</span>
+                    </div>
+                    <p class="item-sub">Intern, Microsoft Research Asia</p>
+                    <ul>
+                        <li>Design and develop a server lift robot for secure operation in data centers, leading mechanical structure development, sensor deployment, control algorithms, web interface, and API integration.</li>
+                        <li>Develop a pressure-feedback force-control algorithm to guide server insertion into racks. Achieve millimeter-level precision in cable-cluttered spaces while reducing risk of connector damage.</li>
+                        <li>Optimize ROS node structures and implement Modbus command monitoring on a Jetson platform, reducing communication latency and achieving near-zero-blocking in the command queue.</li>
+                        <li>Lead cross-border technical coordination meetings with the Microsoft Redmond team. Participate in the deployment of AI agents and their integration with robotic systems.</li>
+                    </ul>
+                </div>
+
+                <div class="item">
+                    <div class="item-header">
+                        <h4>Molecular Beam Epitaxy System Optimization</h4>
+                        <span class="item-date">2024.08 - 2025.05</span>
+                    </div>
+                    <p class="item-sub">Key Member, ZJU-Shenyang Scientific Instruments Project</p>
+                    <ul>
+                        <li>Modeled and identified electromechanical systems using Adams and Comsol to simulate furnace eccentricity caused by material gravity.</li>
+                        <li>Resolved jet anomaly issues through mechanical structure optimization and established selection criteria for tension springs to improve valve motion stability.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="card">
+            <div class="card-header proj-header">Selected Projects</div>
+            <div class="card-body">
+                <div class="item">
+                    <div class="item-header">
+                        <h4>UAV Design and Simulation Based on ROS</h4>
+                        <span class="item-date">2024.06 - 2024.07</span>
+                    </div>
+                    <p>Led lightweight design of drone support structures using Altair Inspire; developed ESP32 firmware and built a PX4 simulation environment based on ROS. Optimized control algorithms for pitch, velocity, and acceleration.</p>
+                </div>
+                <div class="item">
+                    <div class="item-header">
+                        <h4>CT Image Analysis and Installation Error Correction</h4>
+                        <span class="item-date">2024.03 - 2024.06</span>
+                    </div>
+                    <p>Designed medical CT image analysis methods based on standard geometric phantoms in MATLAB. Optimized inverse Radon transform results and achieved medical-standard accuracy via rotational invariance correction.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="activities" class="card">
+            <div class="card-header act-header">Activities & Skills</div>
+            <div class="card-body">
+                <div class="item">
+                    <div class="item-header">
+                        <h4>Robotics Club | Co-Founder</h4>
+                        <span class="item-date">2024.06 - 2025.05</span>
+                    </div>
+                    <ul>
+                        <li>Founded a club on bio-inspired robots, expanding to 50+ members.</li>
+                        <li>Created an innovative, microcontroller-driven, snake-like robotic arm for deep-sea missions.</li>
+                    </ul>
+                </div>
+                <div id="skills" style="margin-top: 20px;">
+                    <p><strong>Engineering & Programming:</strong> AutoCAD, SolidWorks, STM32, COMSOL, Adams, MATLAB, C, Python, ROS, YOLO</p>
+                    <p><strong>Robotic Platforms:</strong> UR series, Siasun DUCO, Mitsubishi RV, ABB manipulators</p>
+                    <p><strong>Language:</strong> English (TOEFL: 100, CET-6: 580)</p>
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

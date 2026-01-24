@@ -1,0 +1,107 @@
+:root {
+    --sidebar-width: 280px;
+    --primary-dark: #2c3e50;
+    --edu-color: #34495e;
+    --exp-color: #1a5276;
+    --proj-color: #d35400;
+    --act-color: #7d3c98;
+    --bg-light: #f4f7f9;
+    --text-main: #333;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-color: var(--bg-light);
+    display: flex;
+    scroll-behavior: smooth;
+}
+
+/* 侧边栏 */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--primary-dark);
+    color: white;
+    position: fixed;
+    left: 0; top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 0;
+    z-index: 1000;
+}
+
+.sidebar-header { padding: 0 30px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-header h2 { margin: 0; font-size: 1.6rem; }
+.sidebar-header p { margin: 5px 0 0; font-size: 0.85rem; color: #bdc3c7; }
+
+.sidebar ul { list-style: none; padding: 20px 0; margin: 0; }
+.sidebar ul li a { display: block; padding: 12px 30px; color: #bdc3c7; text-decoration: none; transition: 0.3s; }
+.sidebar ul li a:hover { background: rgba(255,255,255,0.1); color: white; padding-left: 40px; }
+
+.sidebar-footer { margin-top: auto; padding: 20px 30px; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.1); color: #bdc3c7; }
+.contact-label { color: white; font-weight: bold; display: block; margin-bottom: 5px; }
+
+/* 内容区 */
+.content {
+    margin-left: var(--sidebar-width);
+    padding: 50px;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* 卡片排版 */
+.card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card:hover { transform: translateY(-5px); }
+
+.card-header { padding: 15px 30px; color: white; font-weight: bold; font-size: 1.1rem; }
+.edu-header { background: var(--edu-color); }
+.exp-header { background: var(--exp-color); }
+.proj-header { background: var(--proj-color); }
+.act-header { background: var(--act-color); }
+
+.card-body { padding: 30px; }
+
+/* 简历样式：条目头部左右排列 */
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5px;
+}
+
+.item-header h3, .item-header h4 { margin: 0; color: var(--primary-dark); }
+
+.item-date { font-style: italic; color: #7f8c8d; font-size: 0.95rem; white-space: nowrap; margin-left: 15px; }
+
+.item-sub { font-weight: 600; color: #555; margin-top: 0; margin-bottom: 15px; }
+
+/* 项目跳转链接样式 */
+.project-title-link {
+    text-decoration: none;
+    color: var(--primary-dark);
+}
+
+.project-title-link:hover {
+    color: var(--exp-color);
+    text-decoration: underline;
+}
+
+ul { padding-left: 20px; }
+li { margin-bottom: 10px; font-size: 0.95rem; color: #444; }
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .sidebar { width: 0; display: none; }
+    .content { margin-left: 0; padding: 20px; }
+    .item-header { flex-direction: column; }
+    .item-date { margin-left: 0; margin-top: 5px; }
+}
