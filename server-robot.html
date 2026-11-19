@@ -1,39 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server Handling Robot | Project Detail</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Force-guided robotic server handling at Microsoft Research Asia: mechanical design, optical-flow localization, calibration, and arm–lift coordination.">
+  <meta name="theme-color" content="#173c50">
+  <title>Force-Guided Server Handling | Zepei Lin</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="demo.js" defer></script>
 </head>
-<body style="display: block; background: #fff;">
-    <header style="background: #2c3e50; color: white; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;">
-        <h2>Project: Server Handling Robot</h2>
-        <a href="index.html" style="color: white; text-decoration: none;">← Back to Home</a>
-    </header>
-
-    <main style="max-width: 1000px; margin: 50px auto; padding: 0 20px;">
-        <section>
-            <h1>Full-System Design of Server Handling Robot</h1>
-            <p style="color: #666; font-style: italic;">Internship at Microsoft Research Asia (MSRA)</p>
-            
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
-
-            <h3>Project Overview</h3>
-            <p>Here you can add a detailed description of the project. This robot was designed to automate server handling in secure data center environments.</p>
-
-            <h3>Technical Highlights</h3>
-            <ul>
-                <li><strong>Force Control:</strong> Millimeter-level precision for cable-cluttered spaces.</li>
-                <li><strong>ROS Optimization:</strong> Near-zero latency command processing on Jetson.</li>
-                <li><strong>AI Integration:</strong> Deployment of specialized agents for task planning.</li>
-            </ul>
-
-            <div style="background: #f4f4f4; padding: 40px; text-align: center; border-radius: 12px; margin-top: 30px;">
-                <p style="color: #999;">[ Placeholder for Project Video / Images ]</p>
-                <p style="font-size: 0.8rem;">(To add a video, use the &lt;video&gt; tag or embed a Bilibili/YouTube link here)</p>
-            </div>
-        </section>
-    </main>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="wordmark" href="index.html">Zepei Lin<span>林泽培</span></a>
+    <nav aria-label="Main navigation"><a href="index.html#research">All research</a><a href="mailto:zepeilinzju@outlook.com">Contact</a></nav>
+  </header>
+  <main id="main">
+    <section class="project-hero wrap" aria-labelledby="project-title">
+      <p class="eyebrow">Microsoft Research Asia · Robotics internship</p>
+      <h1 id="project-title">Force-guided<br>server handling</h1>
+      <p class="project-deck">Combining visual localization, mechanical guidance, and force feedback to move heavy servers through tight rack clearances.</p>
+      <div class="project-meta"><span>Zepei Lin · 林泽培</span><a href="https://github.com/yizhongzhang1989/robot_dc">Project code</a></div>
+      <figure class="demo-figure" id="demo">
+        <video id="project-video" controls playsinline preload="metadata" poster="assets/images/demo-poster.webp" aria-label="Demonstration of the robotic server handling system" aria-describedby="demo-caption">
+          <source src="assets/video/demo-00.mp4" type="video/mp4">
+          Your browser does not support HTML video. <a href="assets/video/demo-00.mp4">Open the first demo clip</a>.
+        </video>
+        <div class="demo-controls" id="demo-controls" hidden><label for="demo-chapter">Jump to</label><select id="demo-chapter" aria-label="Demo chapter"></select><span id="demo-progress" class="demo-progress" aria-live="polite"></span></div>
+        <p id="video-error" class="video-error" hidden>This video uses the original HEVC encoding. If your browser cannot play it, <a id="video-download" href="assets/video/demo-00.mp4" download>download the current clip</a> and open it in an HEVC-compatible player.</p>
+        <figcaption id="demo-caption">System demonstration from my undergraduate project presentation. The original video and audio streams are preserved.</figcaption>
+      </figure>
+    </section>
+    <nav class="project-nav" aria-label="On this page"><div class="wrap"><a href="#approach">Approach</a><a href="#hardware">Hardware</a><a href="#localization">Localization</a><a href="#contact-control">Contact control</a><a href="#contributions">My role</a></div></nav>
+    <div class="article-body wrap">
+      <section class="article-section overview-section" id="approach" aria-labelledby="approach-title">
+        <div><p class="eyebrow">The problem</p><h2 id="approach-title">Alignment changes<br>once contact begins.</h2></div>
+        <div class="prose"><p>A server must be unlocked, supported, and moved through a narrow rack opening. Small height or pitch errors can turn a smooth insertion into a jam. As the server moves between the lift and rack, its weight shifts between the two supports; the resulting elastic deflection changes the alignment again.</p><p>The system separates the jobs: the arm operates the handles and moves the server horizontally, while an instrumented lift supports the load and adjusts its height. Vision provides the rack geometry for approaching the task. Mechanical guidance and load feedback handle the physical contact that follows.</p></div>
+      </section>
+      <section class="method-flow" aria-label="System workflow">
+        <div><h3>Locate the rack</h3><p>Calibrated images and optical-flow correspondences establish a common task frame.</p></div>
+        <div><h3>Guide the approach</h3><p>Task-specific tools and passive guides tolerate small alignment errors.</p></div>
+        <div><h3>Adapt through contact</h3><p>Load feedback guides height adjustments as the arm inserts or extracts the server.</p></div>
+      </section>
+      <section class="article-section" id="hardware" aria-labelledby="hardware-title">
+        <div class="section-heading"><h2 id="hardware-title">Designing the mechanics around the task</h2><span>Hardware &amp; sensing</span></div>
+        <div class="hardware-layout">
+          <figure class="hardware-main"><img src="assets/images/lift-design.webp" width="711" height="716" loading="lazy" alt="CAD model of the scissor lift with server support rails and its lower frame."><figcaption>The lift combines vertical support, height sensing, and load sensing.</figcaption></figure>
+          <div class="prose"><p>I designed the lift and task-specific end-effectors around the server's existing handles, knobs, and rack geometry. A draw-wire sensor measures height, while load sensors provide feedback about the support force.</p><p>The tools use shaped contact surfaces to turn unlocking, locking, and handling into simpler arm motions. Lead-in surfaces and a removable guide help absorb small approach errors. The lift's roller support can switch between rolling and higher-friction contact to move or secure the server.</p><p>This mechanical tolerance matters: reliable contact starts with the geometry of the tool and environment, alongside the controller.</p>
+            <div class="tool-pair"><figure><img src="assets/images/unlock-tool.webp" width="472" height="415" loading="lazy" alt="Unlocking tool with an elliptical internal contact profile."><figcaption>Knob-unlocking tool</figcaption></figure><figure><img src="assets/images/passive-guide.webp" width="679" height="446" loading="lazy" alt="Removable guide assembly with compliant strips for the rack entrance."><figcaption>Passive rack guide</figcaption></figure></div>
+          </div>
+        </div>
+      </section>
+      <section class="article-section" id="localization" aria-labelledby="localization-title">
+        <div class="section-heading"><h2 id="localization-title">From image correspondences to a robot task frame</h2><span>Vision &amp; calibration</span></div>
+        <p class="section-intro">The visual pipeline combines learned image correspondences with calibrated geometry. The goal is a rack pose expressed in the robot's base frame, so the arm can use task poses defined relative to the rack.</p>
+        <div class="localization-grid">
+          <div class="method-step"><h3>Calibrate the camera and hand–eye transform</h3><p>Camera calibration estimates the intrinsic matrix and lens distortion. For the wrist-mounted camera, hand–eye calibration estimates the fixed camera-to-end-effector transform. Robot kinematics then places each camera view in the base frame.</p></div>
+          <div class="method-step"><h3>Find correspondences with optical flow</h3><p>Rack corners are labeled in reference images. FlowFormer++ predicts a dense displacement field between a reference image and a newly captured view. Sampling that field at the labeled points transfers their locations into the new image.</p></div>
+          <div class="method-step"><h3>Estimate the rack's rigid pose</h3><p>Calibrated observations from different views constrain the rack geometry. The toolkit supports multi-view triangulation and fitting a known rack model. The fitting path estimates rotation and translation, then refines the result using pixel reprojection error.</p></div>
+          <div class="method-step"><h3>Express actions in rack coordinates</h3><p>The estimated rack-to-base transform maps a task pose into a robot command. Keeping tool targets in the rack frame allows the same task geometry to be reused after relocalizing the rack.</p></div>
+        </div>
+        <div class="transform-panel">
+          <div><p class="eyebrow">Coordinate transforms</p><h3>One chain connects vision to action.</h3><p>Let <i>T</i><sub>AB</sub> map coordinates from frame B into frame A. The base (B), end-effector (E), camera (C), rack (R), and tool target (G) are related by rigid transforms.</p></div>
+          <div class="equations"><p><span>Place the camera</span><span class="formula">T<sub>BC</sub>(q) = T<sub>BE</sub>(q) T<sub>EC</sub></span></p><p><span>Place the tool target</span><span class="formula">T<sub>BG</sub> = T<sub>BR</sub> T<sub>RG</sub></span></p></div>
+        </div>
+        <p class="method-note">A reprojection overlay checks whether the estimated geometry agrees with the images. It does not by itself measure tool positioning accuracy; calibration, robot motion, and contact introduce additional error.</p>
+      </section>
+      <section class="article-section" id="contact-control" aria-labelledby="contact-title">
+        <div class="section-heading"><h2 id="contact-title">Using support force to reduce jamming</h2><span>Arm–lift coordination</span></div>
+        <div class="contact-layout">
+          <div class="prose"><p>I analyzed the server's changing support conditions during insertion and extraction. When weight transfers between the lift and rack, elastic deflection changes the server's pitch. That can force the rails against rack features and increase the arm's pushing or pulling resistance.</p><p>The lift's measured support force provides feedback for small height adjustments near the critical contact region. During insertion, a small downward correction compensates for unloading; during extraction, a small upward correction compensates for loading. The arm continues the horizontal handling motion while the lift adjusts the support.</p><p>The implementation combines height positioning and force-threshold actions through ROS 2, with Modbus device access and web monitoring on Jetson. Mechanical compliance and feedback work together to make the physical operation more repeatable.</p></div>
+          <figure><img src="assets/images/lift-in-rack.webp" width="714" height="436" loading="lazy" alt="Server supported by the lift at the entrance to the rack."><figcaption>Support conditions change as the server moves between the lift and rack.</figcaption></figure>
+        </div>
+        <div class="result-panel"><div><p class="eyebrow">Experimental outcome</p><h3>More reliable insertion<br>and extraction.</h3></div><div class="result-comparison" aria-label="Reported task success improved from below 50 percent to approximately 90 percent"><div><strong>&lt;50<span>%</span></strong><p>Before adjustment</p></div><div><strong>~90<span>%</span></strong><p>With force-guided adjustment</p></div></div><p class="result-note">Reported in the undergraduate project evaluation, with repeated handling tests at the same rack height. These rates describe the tested setup.</p></div>
+      </section>
+      <section class="article-section contributions-section" id="contributions" aria-labelledby="contributions-title">
+        <div><p class="eyebrow">My contribution</p><h2 id="contributions-title">From mechanical design<br>to robot integration.</h2></div>
+        <div class="prose"><p>My main responsibilities covered the instrumented lift, task-specific mechanical tools, feedback control, and the interfaces connecting the lift to the rest of the robot system.</p><ul><li>Lift and end-effector design, sensor integration, and passive guidance.</li><li>Height-control modeling and validation, contact analysis, and force-guided handling adjustments.</li><li>ROS 2 and Modbus integration, lift web APIs, and system debugging.</li><li>Participation in applying optical-flow-based visual localization within the shared system.</li></ul><p>The camera calibration, rack localization, and arm operation described above explain the shared project's pipeline. They are distinguished here from the components I primarily developed.</p><div class="text-links"><a href="https://github.com/yizhongzhang1989/robot_dc">Robot control repository</a><a href="https://github.com/yizhongzhang1989/robot_vision">Vision toolkit</a></div></div>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer wrap"><a href="index.html">Zepei Lin · Home</a><a href="mailto:zepeilinzju@outlook.com">zepeilinzju@outlook.com</a></footer>
 </body>
 </html>

@@ -1,0 +1,65 @@
+{
+  "duration": 195.25,
+  "segments": [
+    {
+      "src": "assets/video/demo-00.mp4",
+      "start": 0,
+      "duration": 20.04,
+      "bytes": 45840968
+    },
+    {
+      "src": "assets/video/demo-01.mp4",
+      "start": 20.04,
+      "duration": 20.01,
+      "bytes": 44718715
+    },
+    {
+      "src": "assets/video/demo-02.mp4",
+      "start": 40.05,
+      "duration": 20.0,
+      "bytes": 46132164
+    },
+    {
+      "src": "assets/video/demo-03.mp4",
+      "start": 60.05,
+      "duration": 20.02,
+      "bytes": 50327418
+    },
+    {
+      "src": "assets/video/demo-04.mp4",
+      "start": 80.07,
+      "duration": 20.01,
+      "bytes": 48088060
+    },
+    {
+      "src": "assets/video/demo-05.mp4",
+      "start": 100.08,
+      "duration": 20.0,
+      "bytes": 35737505
+    },
+    {
+      "src": "assets/video/demo-06.mp4",
+      "start": 120.08,
+      "duration": 20.02,
+      "bytes": 39262131
+    },
+    {
+      "src": "assets/video/demo-07.mp4",
+      "start": 140.1,
+      "duration": 20.01,
+      "bytes": 41131593
+    },
+    {
+      "src": "assets/video/demo-08.mp4",
+      "start": 160.11,
+      "duration": 20.0,
+      "bytes": 44044621
+    },
+    {
+      "src": "assets/video/demo-09.mp4",
+      "start": 180.11,
+      "duration": 15.14,
+      "bytes": 33265940
+    }
+  ]
+}
